@@ -16,6 +16,7 @@ return {
         persist_size = true,
         direction = 'horizontal',
         close_on_exit = true,
+        shell = vim.o.shell,
       }
 
       -- Set a key mapping for ToggleTerm

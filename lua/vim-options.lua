@@ -10,3 +10,6 @@ vim.g.maplocalleader = "\\"
 
 -- Set number line for files 
 vim.cmd("set number")
+
+-- Set  global  terminal 
+vim.o.shell = "C:\\Program Files\\PowerShell\\7\\pwsh.exe"
