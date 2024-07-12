@@ -9,7 +9,7 @@ vim.g.mapleader = "\\"
 vim.g.maplocalleader = "\\"
 
 -- Set number line for files 
-vim.cmd("set number")
+vim.cmd("set relativenumber")
 
 -- Set  global  terminal 
 local os_name =  vim.loop.os_uname().sysname
@@ -20,3 +20,7 @@ elseif os_name == 'Linux' then
   vim.o.shell  =  '/bin/zsh'
 else  vim.o.shell = '/bin/sh'
 end
+
+
+-- Set clipboard
+vim.cmd("set clipboard=unnamedplus")
