@@ -1,13 +1,12 @@
-# Check Lua Formatting
+
 name: Check Lua Formatting
 run-name: ${{ github.actor }}
-on: 
+on:
   pull_request_target:
     types: [opened, synchronize, reopened]
   push:
     branches:
       - main
-      - master
 
 jobs:
   stylua-check:
@@ -19,17 +18,22 @@ jobs:
         with:
           ref: ${{ github.event_name == 'pull_request_target' && github.event.pull_request.head.sha || github.ref }}
 
-      - name: Stylua Check
-        uses: JohnnyMorganz/stylua-action@v4
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          version: latest 
-          args: --check .
+      - name: Install Stylua
+        run: |
+          curl -L -o stylua.zip https://github.com/JohnnyMorganz/StyLua/releases/latest/download/stylua-linux.zip
+          unzip stylua.zip -d /usr/local/bin
+          chmod +x /usr/local/bin/stylua
+
+      - name: Run Stylua Check
+        id: stylua_check
+        run: |
+          /usr/local/bin/stylua --check .
         continue-on-error: true
-      
+
       - name: Display Stylua Output
         if: failure()
         run: |
-          echo "Stylua found issues. PLease fix them."
-          echo "Running Stylua to show ussies:"
-          ./stylua --check . || true
+          echo "Stylua found issues. Please fix them."
+          echo "Running Stylua to show issues:"
+          /usr/local/bin/stylua --check .
+
