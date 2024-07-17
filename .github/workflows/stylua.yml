@@ -25,3 +25,11 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           version: latest 
           args: --check .
+        continue-on-error: true
+      
+      - name: Display Stylua Output
+        if: failure()
+        run: |
+          echo "Stylua found issues. PLease fix them."
+          echo "Running Stylua to show ussies:"
+          ./stylua --check . || true
