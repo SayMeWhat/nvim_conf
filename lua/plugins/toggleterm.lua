@@ -1,10 +1,10 @@
 return {
   {
     'akinsho/toggleterm.nvim',
-    version = "*",
+    version = '*',
     config = function()
       -- Initialize and configure the toggleterm plugin
-      require("toggleterm").setup{
+      require('toggleterm').setup {
         -- Configuration options
         size = 15,
         open_mapping = [[<leader>t]],
@@ -21,7 +21,6 @@ return {
 
       -- Set a key mapping for ToggleTerm
       vim.keymap.set('n', '<leader>t', ':ToggleTerm size=15 dir=~/desktop direction=horizontal name=desktop<cr>', {})
-    end
-  }
+    end,
+  },
 }
-
