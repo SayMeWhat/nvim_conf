@@ -27,4 +27,8 @@ vim.cmd 'set clipboard=unnamedplus'
 
 -- Set copy/past cmd
 vim.keymap.set({ 'n', 'x' }, '<leader>y', [["+y]]) -- copy to system clipboard
-vim.keymap.set({ 'n', 'x' }, '<leader>p', [["+p]]) -- paste from system clipboard
+function ExecuteClipboardAndSubstitution()
+    vim.cmd('normal! "+p')
+    vim.cmd('%s/\\r//g')
+end
+vim.keymap.set('n', '<leader>p', ExecuteClipboardAndSubstitution, { noremap = true, silent = true })

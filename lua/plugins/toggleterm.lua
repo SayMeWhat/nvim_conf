@@ -20,7 +20,7 @@ return {
       }
 
       -- Set a key mapping for ToggleTerm
-      vim.keymap.set('n', '<leader>t', ':ToggleTerm size=15 dir=~/desktop direction=horizontal name=desktop<cr>', {})
+      vim.keymap.set('n', '<leader>t', ':ToggleTerm size=8 dir=~/desktop direction=horizontal name=desktop<cr>', {})
     end,
   },
 }
