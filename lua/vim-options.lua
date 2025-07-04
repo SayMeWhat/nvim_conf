@@ -8,8 +8,10 @@ vim.cmd 'set shiftwidth=2'
 vim.g.mapleader = '\\'
 vim.g.maplocalleader = '\\'
 
--- Set number line for files
-vim.cmd 'set relativenumber'
+-- Display relative line number and the current line number on the status line
+vim.wo.number = true
+vim.wo.relativenumber = true
+vim.wo.statuscolumn = '%{v:relnum?v:relnum:v:lnum}'
 
 -- Set  global  terminal
 local os_name = vim.loop.os_uname().sysname
@@ -28,7 +30,8 @@ vim.cmd 'set clipboard=unnamedplus'
 -- Set copy/past cmd
 vim.keymap.set({ 'n', 'x' }, '<leader>y', [["+y]]) -- copy to system clipboard
 function ExecuteClipboardAndSubstitution()
-    vim.cmd('normal! "+p')
-    vim.cmd('%s/\\r//g')
+  vim.cmd 'normal! "+p'
+  vim.cmd '%s/\\r//g'
 end
+
 vim.keymap.set('n', '<leader>p', ExecuteClipboardAndSubstitution, { noremap = true, silent = true })
