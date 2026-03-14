@@ -1,21 +1,21 @@
 return {
   'nvim-treesitter/nvim-treesitter',
+  lazy = false,
   build = ':TSUpdate',
   config = function()
-    local config = require 'nvim-treesitter.configs'
-    config.setup {
-      auto_install = true,
-      highlight = { enable = true },
-      indent = { enable = true },
-      incremental_selection = {
-        enable = true,
-        keymaps = {
-          init_selection = "gnn", -- Start selection with 'gnn'
-          node_incremental = "grn", -- Increment to the next node with 'grn'
-          scope_incremental = "grc", -- Increment to the scope with 'grc'
-          node_decremental = "grm", -- Decrement to the previous node with 'grm'
-        },
-      },
-    }
+    require('nvim-treesitter').setup()
+
+    local group = vim.api.nvim_create_augroup('nvim-config-treesitter', { clear = true })
+    vim.api.nvim_create_autocmd('FileType', {
+      group = group,
+      callback = function(args)
+        local ok = pcall(vim.treesitter.start, args.buf)
+        if not ok then
+          return
+        end
+
+        vim.bo[args.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+      end,
+    })
   end,
 }

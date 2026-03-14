@@ -1,5 +1,6 @@
 return {
   'nvimdev/dashboard-nvim',
+  event = 'VimEnter',
   config = function()
     require('dashboard').setup {
       theme = 'hyper',
@@ -18,9 +19,9 @@ return {
             key = 'f',
           },
           {
-            desc = ' Apps',
+            desc = '󰈙 Recent files',
             group = 'DiagnosticHint',
-            action = 'Telescope app',
+            action = 'Telescope oldfiles',
             key = 'a',
           },
           {

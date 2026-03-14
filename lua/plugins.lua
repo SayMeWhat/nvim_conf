@@ -1,1 +1,20 @@
-return {}
+return {
+  { import = 'plugins.auto-tag' },
+  { import = 'plugins.autopairs' },
+  { import = 'plugins.catppuccin' },
+  { import = 'plugins.codelens_lsp' },
+  { import = 'plugins.completions' },
+  { import = 'plugins.dashboard' },
+  { import = 'plugins.debugging' },
+  { import = 'plugins.images' },
+  { import = 'plugins.indent_blankline' },
+  { import = 'plugins.lazygit' },
+  { import = 'plugins.lsp-config' },
+  { import = 'plugins.lualine' },
+  { import = 'plugins.neo-tree' },
+  { import = 'plugins.none-ls' },
+  { import = 'plugins.supermaven' },
+  { import = 'plugins.telescope' },
+  { import = 'plugins.toggleterm' },
+  { import = 'plugins.treesitter' },
+}

@@ -4,16 +4,23 @@ return {
   },
   {
     'L3MON4D3/LuaSnip',
-    dependencies = {
-      'saadparwaiz1/cmp_luasnip',
-      'rafamadriz/friendly-snippets',
-    },
   },
   {
     'hrsh7th/nvim-cmp',
+    event = 'InsertEnter',
+    dependencies = {
+      'L3MON4D3/LuaSnip',
+      'saadparwaiz1/cmp_luasnip',
+      'rafamadriz/friendly-snippets',
+    },
     config = function()
       local cmp = require 'cmp'
-      require('luasnip.loaders.from_vscode').lazy_load()
+      local ok, vscode_loader = pcall(require, 'luasnip.loaders.from_vscode')
+      if ok then
+        vim.schedule(function()
+          vscode_loader.lazy_load()
+        end)
+      end
 
       cmp.setup {
         snippet = {
